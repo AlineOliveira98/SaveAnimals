@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using VInspector;
 
 public class SkillController : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class SkillController : MonoBehaviour
     [SerializeField] private AudioClip collectedAudio;
     [SerializeField] private SkillHandler[] skills;
 
-    private Dictionary<SkillType, SkillHandler> skillsDic = new();
+    public SerializedDictionary<SkillType, SkillHandler> skillsDic = new();
 
     public static Action<SkillType> OnSkillAcquired;
 
@@ -20,11 +21,16 @@ public class SkillController : MonoBehaviour
         else
             Destroy(gameObject);
 
+        skillsDic.Clear();
+
         for (int i = 0; i < skills.Length; i++)
         {
             skillsDic.Add(skills[i].skillType, skills[i]);
         }
+    }
 
+    void Start()
+    {
         ApplySkill(SkillType.Dash);
     }
 

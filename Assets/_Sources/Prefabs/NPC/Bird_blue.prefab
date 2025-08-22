@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: 496804952795304731, guid: a80c7c73f02bb78458311fcc6b0b7929, type: 3}
-  animalType: 3
+  animalType: 4
   rangeToAskHelp: 20
   rateToAskHelp: 10
   helpBaloonsPrefab:

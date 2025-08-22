@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon: {fileID: -3347084423515002668, guid: 4e161b78b10bfae4191ca460d5da5c32, type: 3}
-  animalType: 2
+  animalType: 3
   rangeToAskHelp: 20
   rateToAskHelp: 10
   helpBaloonsPrefab:

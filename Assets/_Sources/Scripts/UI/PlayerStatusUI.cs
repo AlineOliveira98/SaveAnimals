@@ -29,7 +29,7 @@ public class PlayerStatusUI : MonoBehaviour
         SkillController.OnSkillAcquired -= UnlockSkill;
     }
 
-    void Start()
+    void Awake()
     {
         foreach (var item in skills)
         {

@@ -11,28 +11,30 @@ public class AnimalsUI : MonoBehaviour
     {
         Animal.OnAnimalSaved += AnimalSaved;
         Animal.OnAnimalDeath += AnimalDied;
-        Animal.OnAnimalDeath += AnimalRevived;
+        Animal.OnAnimalRevived += AnimalRevived;
     }
 
     void OnDisable()
     {
         Animal.OnAnimalSaved -= AnimalSaved;
         Animal.OnAnimalDeath -= AnimalDied;
-        Animal.OnAnimalDeath -= AnimalRevived;
+        Animal.OnAnimalRevived -= AnimalRevived;
     }
 
     private void Start()
     {
         animalsDict.Clear();
 
-        for (int i = 0; i < GameController.Instance.AllAnimals.Count; i++)
+        foreach (var animal in animalsUI)
         {
-            Animal animal = GameController.Instance.AllAnimals[i];
+            animalsDict.Add(animal.AnimalType, animal);
+        }
 
-            if (animalsUI.Length <= i) break;
+        foreach (var animal in GameController.Instance.AllAnimals)
+        {
+            if (!animalsDict.ContainsKey(animal.AnimalType)) continue;
 
-            animalsUI[i].Setup(animal.Icon);
-            animalsDict.Add(animal.AnimalType, animalsUI[i]);
+            animalsDict[animal.AnimalType].Setup(animal.Icon);
         }
     }
 
@@ -55,6 +57,6 @@ public class AnimalsUI : MonoBehaviour
     {
         if (!animalsDict.ContainsKey(type)) return;
 
-        animalsDict[type].UpdateState(false);
+        animalsDict[type].RevivedState();
     }
 }
