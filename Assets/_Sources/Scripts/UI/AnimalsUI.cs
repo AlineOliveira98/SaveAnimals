@@ -3,57 +3,58 @@ using System.Collections.Generic;
 
 public class AnimalsUI : MonoBehaviour
 {
-    [System.Serializable]
-    public class AnimalSlot
+    [SerializeField] private AnimalUI[] animalsUI;
+
+    private Dictionary<AnimalType, AnimalUI> animalsDict = new();
+
+    void OnEnable()
     {
-        public AnimalType type;
-        public GameObject icon;
-        public GameObject savedIcon;
-        public GameObject diedIcon;
+        Animal.OnAnimalSaved += AnimalSaved;
+        Animal.OnAnimalDeath += AnimalDied;
+        Animal.OnAnimalDeath += AnimalRevived;
     }
 
-    [SerializeField] private AnimalSlot[] animalSlotsArray;
-
-    private Dictionary<AnimalType, AnimalSlot> slotMap;
-
-    public static AnimalsUI Instance { get; private set; }
-
-    private void Awake()
+    void OnDisable()
     {
-        Instance = this;
+        Animal.OnAnimalSaved -= AnimalSaved;
+        Animal.OnAnimalDeath -= AnimalDied;
+        Animal.OnAnimalDeath -= AnimalRevived;
+    }
 
-        slotMap = new Dictionary<AnimalType, AnimalSlot>();
-        foreach (var slot in animalSlotsArray)
+    private void Start()
+    {
+        animalsDict.Clear();
+
+        for (int i = 0; i < GameController.Instance.AllAnimals.Count; i++)
         {
-            if (slotMap.ContainsKey(slot.type))
-            {
-                Debug.LogError($"Duplicate AnimalType in UI: {slot.type}");
-            }
-            else
-            {
-                slotMap.Add(slot.type, slot);
-            }
+            Animal animal = GameController.Instance.AllAnimals[i];
+
+            if (animalsUI.Length <= i) break;
+
+            animalsUI[i].Setup(animal.Icon);
+            animalsDict.Add(animal.AnimalType, animalsUI[i]);
         }
     }
 
 
-    public void SetSaved(AnimalType type)
+    public void AnimalSaved(AnimalType type)
     {
-        if (!slotMap.ContainsKey(type)) return;
+        if (!animalsDict.ContainsKey(type)) return;
 
-        var slot = slotMap[type];
-        slot.icon.SetActive(true);
-        slot.savedIcon.SetActive(true);
-        slot.diedIcon.SetActive(false);
+        animalsDict[type].UpdateState(false);
     }
 
-    public void SetDied(AnimalType type)
+    public void AnimalDied(AnimalType type)
     {
-        if (!slotMap.ContainsKey(type)) return;
+        if (!animalsDict.ContainsKey(type)) return;
 
-        var slot = slotMap[type];
-        slot.icon.SetActive(true);
-        slot.savedIcon.SetActive(false);
-        slot.diedIcon.SetActive(true);
+        animalsDict[type].UpdateState(true);
+    }
+
+    private void AnimalRevived(AnimalType type)
+    {
+        if (!animalsDict.ContainsKey(type)) return;
+
+        animalsDict[type].UpdateState(false);
     }
 }

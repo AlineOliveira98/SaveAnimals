@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 1951508548978006607}
   - component: {fileID: 1125770594730864387}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 275128315131231759}
   - component: {fileID: 5696379617530786020}
   m_Layer: 5
-  m_Name: Frame
+  m_Name: Icon Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -585,6 +585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6533512024476844902}
   - component: {fileID: 138753367069960361}
+  - component: {fileID: 8090061096837195927}
   m_Layer: 5
   m_Name: Animal UI
   m_TagString: Untagged
@@ -624,6 +625,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7969921484995360388}
   m_CullTransparentMesh: 1
+--- !u!114 &8090061096837195927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7969921484995360388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 357b092142d24914c8722a3f0c3d3e1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalIcon: {fileID: 8250727400861777286}
+  deathState: {fileID: 3679924733732350311}
+  savedState: {fileID: 4832458439179292118}
 --- !u!1 &7990235938400300552
 GameObject:
   m_ObjectHideFlags: 0

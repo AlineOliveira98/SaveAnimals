@@ -20,7 +20,7 @@ public class Chicken : Animal
         await UniTask.Delay(TimeSpan.FromSeconds(delayAnimation));
         LockedInteraction = false;
 
-        AnimalsUI.Instance.SetSaved(animalType);
         GameController.Instance.SaveAnimal(this);
+        OnAnimalSaved?.Invoke(AnimalType);
     }
 }

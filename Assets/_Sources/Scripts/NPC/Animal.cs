@@ -7,6 +7,8 @@ using VInspector;
 
 public class Animal : MonoBehaviour, ICollectable, IDamageable
 {
+    [SerializeField] private Sprite icon;
+    [SerializeField] private  AnimalType animalType;
     [SerializeField] private float rangeToAskHelp;
     [SerializeField] private float rateToAskHelp;
     [SerializeField] private GameObject[] helpBaloonsPrefab;
@@ -18,16 +20,16 @@ public class Animal : MonoBehaviour, ICollectable, IDamageable
 
     [SerializeField] private AudioClip deathSFX;
     [SerializeField] private AudioSource audioSource;
-
-    public AnimalType animalType;
+    
     private float lastCallHelp;
     private Camera cam;
 
     public bool IsDead { get; set; }
     public bool IsSaved { get; set; }
     public bool LockedInteraction { get; set; } = false;
-
+    public AnimalType AnimalType => animalType;
     public Animator Animator => animator;
+    public Sprite Icon => icon;
 
     public static Action<AnimalType> OnAnimalSaved;
     public static Action<AnimalType> OnAnimalDeath;
@@ -103,10 +105,9 @@ public class Animal : MonoBehaviour, ICollectable, IDamageable
         IsSaved = true;
         gameObject.SetActive(false);
 
-        AnimalsUI.Instance.SetSaved(animalType);
         GameController.Instance.SaveAnimal(this);
 
-        OnAnimalSaved?.Invoke(animalType);
+        OnAnimalSaved?.Invoke(AnimalType);
     }
 
     [Button("Take Damage")]
@@ -125,12 +126,11 @@ public class Animal : MonoBehaviour, ICollectable, IDamageable
             await UniTask.Delay((int)(dieAnimDuration * 1000));
         }
 
-        AnimalsUI.Instance.SetDied(animalType);
         GameController.Instance.KillAnimal(this);
 
         // gameObject.SetActive(false);
 
-        OnAnimalDeath?.Invoke(animalType);
+        OnAnimalDeath?.Invoke(AnimalType);
     }
 
     [Button]
@@ -142,7 +142,7 @@ public class Animal : MonoBehaviour, ICollectable, IDamageable
         IsSaved = false;
         LockedInteraction = false;
 
-        OnAnimalRevived?.Invoke(animalType);
+        OnAnimalRevived?.Invoke(AnimalType);
     }
 
 

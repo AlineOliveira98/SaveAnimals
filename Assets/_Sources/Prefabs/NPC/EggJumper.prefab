@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdbaf13375ee6e4eab031b29b45323d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 4338608209347774417, guid: 6f02d61dbd256be4eb9a15264a11e90c, type: 3}
+  animalType: 0
   rangeToAskHelp: 0
   rateToAskHelp: 99999
   helpBaloonsPrefab:
@@ -161,6 +163,8 @@ MonoBehaviour:
   dieAnimDuration: 1.5
   animator: {fileID: 2551171171359686531}
   overrideController: {fileID: 0}
+  deathSFX: {fileID: 0}
+  audioSource: {fileID: 0}
   delayAnimation: 0
 --- !u!114 &1538031637797642616
 MonoBehaviour:

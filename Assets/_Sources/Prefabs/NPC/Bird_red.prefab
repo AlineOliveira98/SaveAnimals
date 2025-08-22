@@ -154,6 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 798f0fb5a2d6d38459bcf1af40a68e8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  icon: {fileID: 7580404874495145189, guid: d8c4b88ddbd22914b8f62a1030ece30e, type: 3}
+  animalType: 4
   rangeToAskHelp: 20
   rateToAskHelp: 10
   helpBaloonsPrefab:
@@ -164,9 +166,6 @@ MonoBehaviour:
   overrideController: {fileID: 22100000, guid: f20c39451678d8a46980344aea61c673, type: 2}
   deathSFX: {fileID: 0}
   audioSource: {fileID: 0}
-  uiIndex: 5
-  animalType: 4
-  soulObjectToActivate: {fileID: 0}
 --- !u!212 &4315527827511317165
 SpriteRenderer:
   m_ObjectHideFlags: 0
