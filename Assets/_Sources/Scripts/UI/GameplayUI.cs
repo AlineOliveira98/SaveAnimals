@@ -29,7 +29,7 @@ public class GameplayUI : MonoBehaviour
         victimsCount.transform.DOScale(Vector2.one * scaleFactor, speed).SetSpeedBased().SetLoops(-1, LoopType.Yoyo);
     }
 
-    private void UpdateVictimsCount(NPC animal = null)
+    private void UpdateVictimsCount(Animal animal = null)
     {
         int amountAnimals = GameController.Instance.AnimalsCurrentNumber;
         string text = amountAnimals > 1 ? $"{amountAnimals}" : $"WATER THE SEED";

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Cat : NPC
+public class Cat : Animal
 {
     public override void Collect()
     {

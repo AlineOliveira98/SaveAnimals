@@ -22,7 +22,7 @@ public class SafeArea : MonoBehaviour
         GameController.OnAnimalSaved -= SetAnimalPosition;
     }
 
-    private void SetAnimalPosition(NPC animal)
+    private void SetAnimalPosition(Animal animal)
     {
         if (animal as Cat) return;
         

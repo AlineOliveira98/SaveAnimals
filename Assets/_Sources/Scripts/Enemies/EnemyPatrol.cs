@@ -46,7 +46,7 @@ public class EnemyPatrol : MonoBehaviour
     public NavMeshAgent Agent => agent;
     public float RangeAttack => rangeAttack;
 
-    private static List<NPC> allAnimals = new();
+    private static List<Animal> allAnimals = new();
     private float waitTimer;
     
 

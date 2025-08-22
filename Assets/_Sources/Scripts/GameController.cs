@@ -36,10 +36,10 @@ public class GameController : MonoBehaviour
     public Player Player { get; private set; }
     public bool HasAxe { get; private set; }
     public bool HasFeather { get; set; }
-    public List<NPC> AllAnimals { get; private set; } = new();
+    public List<Animal> AllAnimals { get; private set; } = new();
 
-    public static Action<NPC> OnAnimalSaved;
-    public static Action<NPC> OnAnimalDied;
+    public static Action<Animal> OnAnimalSaved;
+    public static Action<Animal> OnAnimalDied;
     public static Action OnDeadAnimalLimitReached;
     public static Action OnGameEnding;
 
@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
 
         Player = FindAnyObjectByType<Player>();
-        AllAnimals = FindObjectsByType<NPC>(FindObjectsSortMode.None).ToList();
+        AllAnimals = FindObjectsByType<Animal>(FindObjectsSortMode.None).ToList();
         totalAnimals = AllAnimals.Count();
 
         AnimalsDied = 0;
@@ -77,7 +77,7 @@ public class GameController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            var animals = FindObjectsByType<NPC>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+            var animals = FindObjectsByType<Animal>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
             var YggDrasil = FindAnyObjectByType<YggDrasil>();
 
             foreach (var item in animals)
@@ -117,7 +117,7 @@ public class GameController : MonoBehaviour
         lastAnimal.SetActive(false);
     }
 
-    public async void SaveAnimal(NPC animal)
+    public async void SaveAnimal(Animal animal)
     {
         AnimalsSaved++;
         AnimalsCurrentNumber--;
@@ -143,7 +143,7 @@ public class GameController : MonoBehaviour
         lastAnimal.SetActive(true);
     }
 
-    public void KillAnimal(NPC animal)
+    public void KillAnimal(Animal animal)
     {
         AnimalsDied++;
         AnimalsCurrentNumber--;

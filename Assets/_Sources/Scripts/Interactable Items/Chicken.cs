@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class Chicken : NPC
+public class Chicken : Animal
 {
     [SerializeField] private float delayAnimation;
 
